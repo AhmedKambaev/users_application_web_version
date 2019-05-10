@@ -1,0 +1,13 @@
+@import '../../../styles/App.scss';
+
+.not-user {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: white;
+    background-color: #360c13;
+    transition: 0.7s;
+    @include absoluteFixed();
+}

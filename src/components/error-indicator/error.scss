@@ -1,0 +1,19 @@
+@import '../../styles/App.scss';
+
+.error-container {
+    @include absoluteFixed();
+
+    img {
+        margin: 30px auto;
+        display: block;
+        max-width: 600px;
+    }
+
+    h1 {
+        margin-bottom: 8px;
+    }
+
+    h1, h2 {
+        text-align: center;
+    }
+}

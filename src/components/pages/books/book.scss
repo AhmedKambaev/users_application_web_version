@@ -1,0 +1,44 @@
+.card {
+    width: 23.6% !important;
+    max-width: 300px !important;
+
+    .image {
+        height: 330px;
+    
+        img {
+            height: 100% !important;
+            width: 100%;
+        }
+    }
+
+    .description {
+        display: flex;
+        div {
+            color: #136696 !important;
+        }
+    }
+}
+
+.search-books-block {
+    padding: 15px 0;
+    background-color: white;
+
+    .container-search-bar {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    input {
+        width: 250px;
+    }
+}
+
+.container-books {
+    width: 88%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    position: relative;
+
+    min-height: 40vh;
+}

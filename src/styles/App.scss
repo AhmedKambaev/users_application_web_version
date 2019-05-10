@@ -1,0 +1,48 @@
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', 'Arial';
+	color: #333333;
+}
+
+body {
+	background-color: #e4e2e2;
+}
+
+@mixin absoluteFixed() {
+	position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.container {
+	width: 88%;
+	margin: 0 auto;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.italic {
+	font-weight: 100;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.justify-content-between {
+	justify-content: space-between;
+}
+
+.color-white {
+	color: white;
+}
+
+.align-items-center {
+	align-items: center;
+}

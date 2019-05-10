@@ -1,0 +1,49 @@
+@import '../../styles/App.scss';
+
+$colorShadow: #191818ba;
+
+@mixin bgBlack() {
+    @include absoluteFixed();
+
+    background: linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%), linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%) 0.1875em 0.1875em, radial-gradient(at 50% 0, #484847, #090909);
+    background-size: 0.375em 0.375em, 0.375em 0.375em, 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg-form {
+    @include bgBlack();
+}
+
+.form-block {
+    background-color: beige;
+    border-radius: 4px;
+    padding: 10px;
+    min-width: 350px;
+    box-shadow: 0px 10px 10px 10px $colorShadow;
+
+    .form-group {
+        margin: 20px 5px 25px 5px;
+        border-bottom: 1px solid gray;
+        display: flex;
+        position: relative;
+    
+        input {
+            border: none;
+            // border-bottom: 1px solid gray;
+            padding: 4px 4px 4px 19px;
+            width: 100%;
+            height: 33px;
+            outline: none;
+            background-color: beige;
+        }
+
+        i {
+            position: absolute;
+            bottom: 12px;
+            font-size: 14px;
+        }
+    }
+}
+
