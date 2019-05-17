@@ -11,3 +11,109 @@
     transition: 0.7s;
     @include absoluteFixed();
 }
+
+.section-videos-container {
+    width: 95% !important;
+    background-color: white;
+    margin-top: 20px !important;
+    padding: 20px;
+    position: relative;
+    min-height: 40vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.videos-section {
+    display: flex;
+    width: 100% !important;
+
+    .list {
+        width: 40%;
+        margin-left: 20px;
+        margin-top: 0;
+    }
+}
+
+.video-item {
+    display: flex !important;
+    align-items: center !important;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #ececec2e;
+    }
+
+    &:nth-child(n+2) {
+        border-top: 1px solid gray !important;
+    }
+
+    .image {
+        width: 319px !important;
+        height: 198px !important;
+    }
+}
+
+.video-detail-container {
+    position: relative;
+    width: 61%;
+}
+
+.message-loading {
+    margin: 0 auto !important;
+    width: 40%;
+    transition: 0.4s;
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.2);
+    } 
+
+    p {
+        text-align: center;
+        font-size: 18px;
+    }
+
+    h4 {
+        color: darkmagenta !important;
+        font-size: 24px !important;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .videos-section {
+        display: block !important;
+
+        .list {
+            width: 100%;
+            display: flex !important;
+            flex-wrap: wrap;
+        }
+
+        .video-item {
+            max-width: 30%;
+            display: block !important;
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            border: none;
+            max-height: 270px;
+            
+            .image {
+                margin-bottom: 10px !important;
+            }
+
+            .header {
+                padding: 7px !important; 
+            }
+        }
+    }
+
+    .video-detail-container {
+        width: 100%;
+        min-height: 30vh;
+        margin-bottom: 30px;
+    }
+
+}

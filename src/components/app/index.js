@@ -2,18 +2,17 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { userAuthor, userLogout, loadedBooks, searchChanged,
-    getMovies } from '../../actions';
+    getMovies, changeSearchVideos, loadedVideos, selectedVideo } from '../../actions';
 import FormContainer from '../auth_reg-form';
 import VideosPage from '../pages/videos';
 import BooksPage from '../pages/books';
 import { firebaseDB } from '../../firebase';
 import { withRouter } from 'react-router-dom';
 
+
+
 import '../../styles/App.scss';
 
-
-const url = 'https://api.tvmaze.com/search/shows?q=';
-const defaultUrl = 'stargate';
 
 class App extends Component {
 
@@ -31,19 +30,20 @@ class App extends Component {
         password: ''
     }
 
-    componentDidMount = () => {
-        fetch(url+defaultUrl)
-            .then(response => {
-                return response.json();
-            }) 
-            .then(res => {
-                const data = res.map(item => item.show);
-                this.props.loadedBooks(data);
-            })
-            .catch(err => {
-                console.log(err)
-            });
 
+    onTermSubmit = (e) => {
+        const input = e.target;
+        this.props.changeSearchVideos(input.value);
+        // this.props.loadedVideos(input.value);
+    }
+
+    onSubmitVideos = (e) => {
+        e.preventDefault();
+        this.props.loadedVideos(this.props.searchVideos);
+    }
+
+    onVideoSelect = (video) => {
+        this.props.selectedVideo(video);
     }
 
     register = (input) => {
@@ -103,13 +103,11 @@ class App extends Component {
                 let users = [];
                 for(let i in data) {
                     let obj = {login: data[i].login, password: data[i].password};
-                    console.log(obj)
                     users.push(obj);
                 }
 
                 const user = users.find(item => (item.login === this.registerValues.login));
                 if(!user) {
-                    console.log(user)
                     const { userAuthor } = this.props;
                     firebaseDB.ref('users').push({
                         login: this.registerValues.login,
@@ -144,7 +142,9 @@ class App extends Component {
 
     render() {
         const { authUser } = this.props.user;
-        const { userLogout, books, booksLoader, loadedBooks, movies } = this.props;
+        const { userLogout, books, booksLoader, loadedBooks, 
+            movies, videos, videosLoading, loadedVideos, selectVideo,
+            errorVideosLoading, errorBooksLoaded } = this.props;
         return (
             <Switch>
                 <Route
@@ -156,12 +156,15 @@ class App extends Component {
                     
                 <Route
                     path="/video"
-                    component={() => <VideosPage navigator={this.props.history} userLogout={userLogout} authUser={authUser} />}
+                    render={() => <VideosPage loadedVideos={loadedVideos} errorVideosLoading={errorVideosLoading} onSubmitVideos={this.onSubmitVideos} selectVideo={selectVideo} videosLoading={videosLoading} 
+                        videos={videos} onTermSubmit={this.onTermSubmit} navigator={this.props.history} 
+                        userLogout={userLogout} authUser={authUser} onVideoSelect={this.onVideoSelect} />}
                     />
 
                 <Route
                     path="/books"
-                    render={() => <BooksPage value={movies} onSearchChange={this.onSearchChange} loadedBooks={loadedBooks} books={books} booksLoader={booksLoader} navigator={this.props.history} userLogout={userLogout} authUser={authUser} />}
+                    render={() => <BooksPage errorBooksLoaded={errorBooksLoaded} value={movies} onSearchChange={this.onSearchChange} loadedBooks={loadedBooks} 
+                        books={books} booksLoader={booksLoader} navigator={this.props.history} userLogout={userLogout} authUser={authUser} />}
                     />
             </Switch>
         );
@@ -174,7 +177,13 @@ const mapStateToProps = (state) => {
         user: state.user.user,
         books: state.books.books,
         booksLoader: state.books.booksLoader,
-        movies: state.books.movie
+        errorBooksLoaded: state.books.errorBooksLoaded,
+        movies: state.books.movie,
+        videos: state.videos.videos,
+        videosLoading: state.videos.videosLoading,
+        errorVideosLoading: state.videos.errorVideosLoading,
+        searchVideos: state.videos.searchVideos,
+        selectVideo: state.videos.selectVideo
     }
 };
 
@@ -183,6 +192,9 @@ const mapDispatchToProps = {
     userLogout,
     searchChanged,
     getMovies,
+    loadedVideos,
+    changeSearchVideos,
+    selectedVideo,
     loadedBooks
 };
 

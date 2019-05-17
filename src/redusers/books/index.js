@@ -1,7 +1,8 @@
 const initialState = {
     books: [],
     booksLoader: true,
-    movie: ''
+    movie: '',
+    errorBooksLoaded: false
 }
 
 
@@ -11,24 +12,29 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 books: action.payload,
-                booksLoader: false
+                booksLoader: false,
+                errorBooksLoaded: false
             }
         case 'SEARCH_CHANGE':
             return {
                 ...state,
                 movie: action.payload,
-                booksLoader: true
+                booksLoader: true,
+                errorBooksLoaded: false
             }
         case 'MOVIES_FETCHED':
         console.log(action.payload)
             return {
                 ...state,
                 books: action.payload,
-                booksLoader: false
+                booksLoader: false,
+                errorBooksLoaded: false
             }
         case 'MOVIES_FAILED':
             return {
-                ...state
+                ...state,
+                booksLoader: false,
+                errorBooksLoaded: true
             }
         default:
             return state;

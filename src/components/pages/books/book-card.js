@@ -2,13 +2,13 @@ import React from 'react';
 import './book.scss';
 
 
-export default ({id, name, image, rating, schedule = '12:30', status = 'not status', genres = []}) => {
-
+export default (props) => {
+    const {id, name, image, rating, schedule = '12:30', status = 'not status', genres = [], openModal} = props;
     const img = (image === undefined || image === null) ? 'https://fcrmedia.ie/wp-content/themes/fcr/assets/images/default.jpg' : `https${image.medium.slice(4)}`
     const { average } = rating ? rating : 'Not rating';
     const { time } = schedule;
     return(
-        <div className="card" key={id}>
+        <div onClick={() => openModal({...props})} className="card" key={id}>
             <div className="image">
                 <img src={img} />
             </div>
@@ -25,11 +25,11 @@ export default ({id, name, image, rating, schedule = '12:30', status = 'not stat
             </div>
             <div className="extra content">
                 <span className="right floated">
-                    Joined {time}
+                    Добавлена {time}
                 </span>
                 <span>
                     <i className="user icon"></i>
-                    Rating {average}
+                    Рейтинг {average}
                 </span>
             </div>
         </div>

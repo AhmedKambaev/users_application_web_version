@@ -1,20 +1,24 @@
-.card {
-    width: 23.6% !important;
-    max-width: 300px !important;
 
-    .image {
-        height: 330px;
+.books-sections {
+    .card {
+        width: 23.6% !important;
+        max-width: 320px !important;
+        min-width: 250px;
     
-        img {
-            height: 100% !important;
-            width: 100%;
+        .image {
+            height: 330px;
+        
+            img {
+                height: 100% !important;
+                width: 100%;
+            }
         }
-    }
-
-    .description {
-        display: flex;
-        div {
-            color: #136696 !important;
+    
+        .description {
+            display: flex;
+            div {
+                color: #136696 !important;
+            }
         }
     }
 }
@@ -37,8 +41,46 @@
     width: 88%;
     margin: 0 auto;
     padding-bottom: 20px;
-    padding-top: 20px;
+    margin-top: 20px;
     position: relative;
 
     min-height: 40vh;
+}
+
+@media screen and (max-width: 900px) {
+    .books-sections {
+        .card {
+            width: 45% !important;
+            min-width: 100px;
+        }
+
+        .cards {
+            justify-content: space-between
+        }
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .books-sections {
+        .card {
+
+            .image {
+                height: auto;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .books-sections {
+        .card {
+            width: 100% !important;
+            max-width: 100% !important;
+
+            .image {
+                height: auto;
+            }
+            
+        }
+    }
 }

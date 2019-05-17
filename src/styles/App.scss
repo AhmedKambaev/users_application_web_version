@@ -10,6 +10,8 @@ body {
 	background-color: #e4e2e2;
 }
 
+$modalColorBlack: rgba(0,0,0,0.4);
+
 @mixin absoluteFixed() {
 	position: fixed;
     left: 0;
@@ -17,6 +19,7 @@ body {
     bottom: 0;
     right: 0;
 }
+
 
 .container {
 	width: 88%;
@@ -33,6 +36,10 @@ body {
 
 .d-flex {
 	display: flex;
+}
+
+.d-none {
+	display: none;
 }
 
 .justify-content-between {
