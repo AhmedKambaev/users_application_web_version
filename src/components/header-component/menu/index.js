@@ -36,12 +36,6 @@ const Menu = ({authUser, userLogout, navigator}) => {
                         <li>
                             <Link to="/books">Книги</Link>
                         </li>
-                        <li>
-                            <Link to="/search-image">Картинки</Link>
-                        </li>
-                        <li>
-                            <Link to="/music">Музыка</Link>
-                        </li>
                     </ul>
                     {_indicatorUser()}
                 </div>
